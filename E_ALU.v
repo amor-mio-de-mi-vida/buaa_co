@@ -3,6 +3,7 @@
 `define ADD 4'b0010
 `define SUB 4'b0110
 `define SLT 4'b0111
+`define SLTU 4'b0011
 `define SLL 4'b1000
 
 module E_ALU(
@@ -55,7 +56,11 @@ module E_ALU(
         end
         
         `SLT : begin
-          result = (SrcA < SrcB) ? 1 : 0; 
+          result = ($signed(SrcA) < $signed(SrcB)) ? 1 : 0; 
+        end
+
+        `SLTU : begin
+          result = (SrcA < SrcB) ? 1: 0;
         end
 
         `SLL : begin

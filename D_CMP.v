@@ -16,6 +16,7 @@ module D_CMP(
     output Branch_or_not
 );
 
-    assign Branch_or_not = (Branch && left==right) ? 1'b1 : 1'b0;
+    assign Branch_or_not = ((instr[31:26] == `beq && Branch && left == right) || 
+                            (instr[31:26] == `bne && Branch && left != right)) ? 1'b1 : 1'b0;
 
 endmodule

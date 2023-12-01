@@ -1,15 +1,35 @@
 //opcode
 `define R 6'b000000
 `define ori 6'b001101
+`define lb 6'b100000 // TODO
+`define lh 6'b100001 // TODO
 `define lw 6'b100011
+`define sb 6'b101000 // TODO
+`define sh 6'b101001 // TODO
 `define sw 6'b101011
 `define beq 6'b000100
+`define bne 6'b000100 // TODO
 `define lui 6'b001111
 `define jal 6'b000011
+`define addi 6'b001000 // TODO
+`define andi 6'b001100 // TODO
 //func
 `define add 6'b100000
 `define sub 6'b100010
-`define jr 6'b001000
+`define and 6'b100100 // TODO
+`define or 6'b100101 // TODO
+`define slt 6'b101010 // TODO
+`define sltu 6'b101011 // TODO
+`define mult 6'b011000 // TODO
+`define multu 6'b011001 // TODO
+`define div 6'b011010 // TODO
+`define divu 6'b011011 // TODO
+`define mfhi 6'b010000 // TODO
+`define mflo 6'b010010 // TODO
+`define mthi 6'b010001 // TODO
+`define mtlo 6'b010011 // TODO
+`define jr 6'b001000 
+
 
 //ExtSel
 `define Sign_ext 2'b00
@@ -31,9 +51,12 @@
 `define I_Alu 1'b1
 
 //ALUCtrl
+`define AND 4'b0000
+`define OR 4'b0001
 `define ADD 4'b0010
 `define SUB 4'b0110
-`define OR 4'b0001
+`define SLT 4'b0111
+`define SLTU 4'b0011
 
 module D_CU(
     input [5:0] opcode,
@@ -54,23 +77,32 @@ module D_CU(
 
     wire [1:0] ALUOp;
 
+    // 决定是否写寄存器
     assign RegWrite = ((opcode == `R && func!=`jr) ||
-                        (opcode== `R && func!=`R) ||
-                        opcode == `ori ||
+                       (opcode== `R && func!=`R) ||
+                       opcode == `ori ||
+                       opcode == `addi ||
+                       opcode == `andi ||
                        opcode == `lw ||
                        opcode == `lui ||
                        opcode == `jal) ? 1'b1 : 1'b0;
 
+    // 决定按照哪种规则扩展
     assign ExtSel = (opcode == `lui) ? `Lui_ext : 
-                    (opcode == `ori) ? `Zero_ext : `Sign_ext;
+                    (opcode == `ori || opcode == `andi) ? `Zero_ext : `Sign_ext;
 
+    // 决定写哪个寄存器
     assign RegDst = (opcode ==  `jal) ? `ra :
                     (opcode == `R) ? `rd : `rt;
 
+    // 决定写寄存器的时候写哪个值
     assign WriteSel = (opcode == `jal) ? `pc_8 :
                       (opcode == `lui) ? `ext_out : `dm_result ;
 
+    // 决定SrcB的选择
     assign ALUSrc = (opcode == `ori ||
+                     opcode == `addi ||
+                     opcode == `andi ||
                      opcode == `lw ||
                      opcode == `sw) ? `I_Alu : `R_Alu;
 
@@ -78,13 +110,20 @@ module D_CU(
                    (opcode == `R) ? 2'b10 :
                    (opcode == `beq) ? 2'b01 : 2'b00;
 
-    assign ALUCtrl = (ALUOp == 2'b00 || (ALUOp == 2'b10 && func == `add)) ? `ADD :
+    // 决定ALU执行哪种运算
+    assign ALUCtrl = (opcode == `R && func == `or) ? `OR : 
+                     (opcode == `R && func == `and || opcode == `andi) ? `AND :
+                     (opcode == `R && func == `sltu) ? `SLTU :
+                     (opcode == `R && func == `slt) ? `SLT : 
+                     (ALUOp == 2'b00 || (ALUOp == 2'b10 && func == `add) || opcode == `addi) ? `ADD :
                      (ALUOp == 2'b01 || (ALUOp == 2'b10 && func == `sub)) ?  `SUB : `OR;
 
-    assign Branch = (opcode == `beq) ? 1'b1 : 1'b0;
+    assign Branch = (opcode == `beq || opcode == `bne) ? 1'b1 : 1'b0;
 
+    // 决定是否写内存的值
     assign MemWrite = (opcode == `sw) ? 1'b1 : 1'b0;  
-                   
+
+    // 决定load类指令               
     assign MemtoReg = (opcode == `lw) ? 1'b1 : 1'b0;
 
     assign Jump = (opcode == `jal ||(opcode == `R && func == `jr)) ? 1'b1 : 1'b0;
