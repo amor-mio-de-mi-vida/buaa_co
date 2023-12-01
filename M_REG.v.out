@@ -1,0 +1,147 @@
+#! c:/iverilog-x86/bin/vvp
+:ivl_version "10.0 (stable)" "(v10_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01373f58 .scope module, "M_REG" "M_REG" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk"
+    .port_info 1 /INPUT 1 "reset"
+    .port_info 2 /INPUT 1 "RegWrite_E"
+    .port_info 3 /INPUT 1 "MemtoReg_E"
+    .port_info 4 /INPUT 1 "MemWrite_E"
+    .port_info 5 /INPUT 2 "WriteSel_E"
+    .port_info 6 /INPUT 32 "ALUOut_E"
+    .port_info 7 /INPUT 32 "WriteData_E"
+    .port_info 8 /INPUT 5 "WriteReg_E"
+    .port_info 9 /INPUT 32 "PC_E"
+    .port_info 10 /INPUT 32 "SignImm_E"
+    .port_info 11 /INPUT 32 "Instr_E"
+    .port_info 12 /OUTPUT 1 "RegWrite_M"
+    .port_info 13 /OUTPUT 1 "MemtoReg_M"
+    .port_info 14 /OUTPUT 1 "MemWrite_M"
+    .port_info 15 /OUTPUT 2 "WriteSel_M"
+    .port_info 16 /OUTPUT 32 "ALUOut_M"
+    .port_info 17 /OUTPUT 32 "WriteData_M"
+    .port_info 18 /OUTPUT 5 "WriteReg_M"
+    .port_info 19 /OUTPUT 32 "PC_M"
+    .port_info 20 /OUTPUT 32 "SignImm_M"
+    .port_info 21 /OUTPUT 32 "Instr_M"
+o02d03fc4 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v01374028_0 .net "ALUOut_E", 31 0, o02d03fc4;  0 drivers
+v0137bf20_0 .var "ALUOut_M", 31 0;
+o02d03ff4 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0137bf78_0 .net "Instr_E", 31 0, o02d03ff4;  0 drivers
+v02d00c40_0 .var "Instr_M", 31 0;
+o02d04024 .functor BUFZ 1, C4<z>; HiZ drive
+v02d00c98_0 .net "MemWrite_E", 0 0, o02d04024;  0 drivers
+v02d00cf0_0 .var "MemWrite_M", 0 0;
+o02d04054 .functor BUFZ 1, C4<z>; HiZ drive
+v02d00d48_0 .net "MemtoReg_E", 0 0, o02d04054;  0 drivers
+v02d00da0_0 .var "MemtoReg_M", 0 0;
+o02d04084 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v02d00df8_0 .net "PC_E", 31 0, o02d04084;  0 drivers
+v02d00e50_0 .var "PC_M", 31 0;
+o02d040b4 .functor BUFZ 1, C4<z>; HiZ drive
+v02d00ea8_0 .net "RegWrite_E", 0 0, o02d040b4;  0 drivers
+v02d00f00_0 .var "RegWrite_M", 0 0;
+o02d040e4 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v02d00f58_0 .net "SignImm_E", 31 0, o02d040e4;  0 drivers
+v02d00fb0_0 .var "SignImm_M", 31 0;
+o02d04114 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v02d01008_0 .net "WriteData_E", 31 0, o02d04114;  0 drivers
+v02d01060_0 .var "WriteData_M", 31 0;
+o02d04144 .functor BUFZ 5, C4<zzzzz>; HiZ drive
+v02d01240_0 .net "WriteReg_E", 4 0, o02d04144;  0 drivers
+v02d010e0_0 .var "WriteReg_M", 4 0;
+o02d04174 .functor BUFZ 2, C4<zz>; HiZ drive
+v02d01768_0 .net "WriteSel_E", 1 0, o02d04174;  0 drivers
+v02d01500_0 .var "WriteSel_M", 1 0;
+o02d041a4 .functor BUFZ 1, C4<z>; HiZ drive
+v02d013f8_0 .net "clk", 0 0, o02d041a4;  0 drivers
+o02d041bc .functor BUFZ 1, C4<z>; HiZ drive
+v02d017c0_0 .net "reset", 0 0, o02d041bc;  0 drivers
+E_0137c4f8 .event posedge, v02d013f8_0;
+    .scope S_01373f58;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v02d00f00_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v02d00da0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v02d00cf0_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v02d01500_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0137bf20_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v02d01060_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v02d010e0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v02d00e50_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v02d00fb0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v02d00c40_0, 0;
+    %end;
+    .thread T_0;
+    .scope S_01373f58;
+T_1 ;
+    %wait E_0137c4f8;
+    %load/vec4 v02d017c0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v02d00f00_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v02d00da0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v02d00cf0_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v02d01500_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0137bf20_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v02d01060_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v02d010e0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v02d00e50_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v02d00fb0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v02d00c40_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v02d00ea8_0;
+    %assign/vec4 v02d00f00_0, 0;
+    %load/vec4 v02d00d48_0;
+    %assign/vec4 v02d00da0_0, 0;
+    %load/vec4 v02d00c98_0;
+    %assign/vec4 v02d00cf0_0, 0;
+    %load/vec4 v02d01768_0;
+    %assign/vec4 v02d01500_0, 0;
+    %load/vec4 v01374028_0;
+    %assign/vec4 v0137bf20_0, 0;
+    %load/vec4 v02d01008_0;
+    %assign/vec4 v02d01060_0, 0;
+    %load/vec4 v02d01240_0;
+    %assign/vec4 v02d010e0_0, 0;
+    %load/vec4 v02d00df8_0;
+    %assign/vec4 v02d00e50_0, 0;
+    %load/vec4 v02d00f58_0;
+    %assign/vec4 v02d00fb0_0, 0;
+    %load/vec4 v0137bf78_0;
+    %assign/vec4 v02d00c40_0, 0;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "M_REG.v";

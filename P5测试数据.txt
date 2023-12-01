@@ -1,0 +1,33 @@
+// An highlighted block
+add $s1 $s2 $s3
+sw $s1 0($0) //
+____________________
+add $s1 $s2 $s3
+sw $0 0($s1)
+___________________
+jal label
+nop
+label: add $1 $31 $0
+__________________
+jal label
+label:add $1 $31 $0
+nop
+___________________
+addu $s0 $s1 $s2
+subu $s3 $s4 $s5
+sw $s0 0($0)
+___________________
+jal label
+nop
+label: jr $31
+nop
+___________________
+add $31 $1 $2
+jr $31 
+nop
+____________
+jal target
+nop
+target:beq $31 $0 target2
+nop
+target2: ....

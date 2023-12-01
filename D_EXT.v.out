@@ -1,0 +1,60 @@
+#! c:/iverilog-x86/bin/vvp
+:ivl_version "10.0 (stable)" "(v10_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01273f58 .scope module, "D_EXT" "D_EXT" 2 5;
+ .timescale 0 0;
+    .port_info 0 /INPUT 16 "imm"
+    .port_info 1 /INPUT 2 "ExtSel"
+    .port_info 2 /OUTPUT 32 "Ext_out"
+o01141ff4 .functor BUFZ 2, C4<zz>; HiZ drive
+v0127baa8_0 .net "ExtSel", 1 0, o01141ff4;  0 drivers
+v0127bbb0_0 .net "Ext_out", 31 0, L_011706a8;  1 drivers
+L_01175060 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0127bc08_0 .net/2u *"_s0", 1 0, L_01175060;  1 drivers
+L_01175088 .functor BUFT 1, C4<01>, C4<0>, C4<0>, C4<0>;
+v0127bb58_0 .net/2u *"_s10", 1 0, L_01175088;  1 drivers
+v0127bcb8_0 .net *"_s12", 0 0, L_011702e0;  1 drivers
+L_011750b0 .functor BUFT 1, C4<0000000000000000>, C4<0>, C4<0>, C4<0>;
+v0127bb00_0 .net/2u *"_s14", 15 0, L_011750b0;  1 drivers
+v0127bc60_0 .net *"_s16", 31 0, L_01170128;  1 drivers
+L_011750d8 .functor BUFT 1, C4<10>, C4<0>, C4<0>, C4<0>;
+v0127b948_0 .net/2u *"_s18", 1 0, L_011750d8;  1 drivers
+v0127b9a0_0 .net *"_s2", 0 0, L_01170860;  1 drivers
+v0127b9f8_0 .net *"_s20", 0 0, L_011705a0;  1 drivers
+L_01175100 .functor BUFT 1, C4<0000000000000000>, C4<0>, C4<0>, C4<0>;
+v0127ba50_0 .net/2u *"_s22", 15 0, L_01175100;  1 drivers
+v01170758_0 .net *"_s24", 31 0, L_01170498;  1 drivers
+L_01175128 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v01170078_0 .net/2u *"_s26", 31 0, L_01175128;  1 drivers
+v01170b20_0 .net *"_s28", 31 0, L_01170700;  1 drivers
+v011708b8_0 .net *"_s30", 31 0, L_01170650;  1 drivers
+v011705f8_0 .net *"_s5", 0 0, L_011704f0;  1 drivers
+v01170390_0 .net *"_s6", 15 0, L_01170548;  1 drivers
+v01170ac8_0 .net *"_s8", 31 0, L_011700d0;  1 drivers
+o011421a4 .functor BUFZ 16, C4<zzzzzzzzzzzzzzzz>; HiZ drive
+v01170288_0 .net "imm", 15 0, o011421a4;  0 drivers
+L_01170860 .cmp/eq 2, o01141ff4, L_01175060;
+L_011704f0 .part o011421a4, 15, 1;
+LS_01170548_0_0 .concat [ 1 1 1 1], L_011704f0, L_011704f0, L_011704f0, L_011704f0;
+LS_01170548_0_4 .concat [ 1 1 1 1], L_011704f0, L_011704f0, L_011704f0, L_011704f0;
+LS_01170548_0_8 .concat [ 1 1 1 1], L_011704f0, L_011704f0, L_011704f0, L_011704f0;
+LS_01170548_0_12 .concat [ 1 1 1 1], L_011704f0, L_011704f0, L_011704f0, L_011704f0;
+L_01170548 .concat [ 4 4 4 4], LS_01170548_0_0, LS_01170548_0_4, LS_01170548_0_8, LS_01170548_0_12;
+L_011700d0 .concat [ 16 16 0 0], o011421a4, L_01170548;
+L_011702e0 .cmp/eq 2, o01141ff4, L_01175088;
+L_01170128 .concat [ 16 16 0 0], o011421a4, L_011750b0;
+L_011705a0 .cmp/eq 2, o01141ff4, L_011750d8;
+L_01170498 .concat [ 16 16 0 0], L_01175100, o011421a4;
+L_01170700 .functor MUXZ 32, L_01175128, L_01170498, L_011705a0, C4<>;
+L_01170650 .functor MUXZ 32, L_01170700, L_01170128, L_011702e0, C4<>;
+L_011706a8 .functor MUXZ 32, L_01170650, L_011700d0, L_01170860, C4<>;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "D_EXT.v";

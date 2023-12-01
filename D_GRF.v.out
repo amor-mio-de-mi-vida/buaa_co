@@ -1,0 +1,145 @@
+#! c:/iverilog-x86/bin/vvp
+:ivl_version "10.0 (stable)" "(v10_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00abbea8 .scope module, "D_GRF" "D_GRF" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk"
+    .port_info 1 /INPUT 1 "reset"
+    .port_info 2 /INPUT 1 "WE"
+    .port_info 3 /INPUT 5 "A1"
+    .port_info 4 /INPUT 5 "A2"
+    .port_info 5 /INPUT 5 "A3"
+    .port_info 6 /INPUT 32 "WD3"
+    .port_info 7 /INPUT 32 "pc"
+    .port_info 8 /INPUT 32 "instr"
+    .port_info 9 /OUTPUT 32 "RD1"
+    .port_info 10 /OUTPUT 32 "RD2"
+L_00ab9660 .functor AND 1, L_02cf7478, L_02cf7318, C4<1>, C4<1>;
+o02cd405c .functor BUFZ 1, C4<z>; HiZ drive
+L_00abbf78 .functor AND 1, L_00ab9660, o02cd405c, C4<1>, C4<1>;
+L_00ab4050 .functor AND 1, L_02cf6e48, L_02cf7058, C4<1>, C4<1>;
+L_00abb290 .functor AND 1, L_00ab4050, o02cd405c, C4<1>, C4<1>;
+o02cd3fcc .functor BUFZ 5, C4<zzzzz>; HiZ drive
+v00ab9ef0_0 .net "A1", 4 0, o02cd3fcc;  0 drivers
+o02cd3fe4 .functor BUFZ 5, C4<zzzzz>; HiZ drive
+v00ab9f48_0 .net "A2", 4 0, o02cd3fe4;  0 drivers
+o02cd3ffc .functor BUFZ 5, C4<zzzzz>; HiZ drive
+v00aba3c0_0 .net "A3", 4 0, o02cd3ffc;  0 drivers
+v00aba520_0 .net "RD1", 31 0, L_02cf7210;  1 drivers
+v00ab9ff8_0 .net "RD2", 31 0, L_02cf6df0;  1 drivers
+o02cd4044 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v00aba5d0_0 .net "WD3", 31 0, o02cd4044;  0 drivers
+v00aba628_0 .net "WE", 0 0, o02cd405c;  0 drivers
+v00aba260_0 .net *"_s0", 0 0, L_02cf7478;  1 drivers
+v00aba310_0 .net *"_s10", 31 0, L_02cf75d8;  1 drivers
+v00aba208_0 .net *"_s12", 6 0, L_02cf7000;  1 drivers
+L_02cf7c40 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v00aba2b8_0 .net *"_s15", 1 0, L_02cf7c40;  1 drivers
+v00aba368_0 .net *"_s18", 0 0, L_02cf6e48;  1 drivers
+L_02cf7c18 .functor BUFT 1, C4<00000>, C4<0>, C4<0>, C4<0>;
+v00aba418_0 .net/2u *"_s2", 4 0, L_02cf7c18;  1 drivers
+L_02cf7c68 .functor BUFT 1, C4<00000>, C4<0>, C4<0>, C4<0>;
+v00aba470_0 .net/2u *"_s20", 4 0, L_02cf7c68;  1 drivers
+v00aba0a8_0 .net *"_s22", 0 0, L_02cf7058;  1 drivers
+v00ab9fa0_0 .net *"_s24", 0 0, L_00ab4050;  1 drivers
+v00aba4c8_0 .net *"_s26", 0 0, L_00abb290;  1 drivers
+v00aba578_0 .net *"_s28", 31 0, L_02cf76e0;  1 drivers
+v02cf7630_0 .net *"_s30", 6 0, L_02cf7420;  1 drivers
+L_02cf7c90 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v02cf7160_0 .net *"_s33", 1 0, L_02cf7c90;  1 drivers
+v02cf7370_0 .net *"_s4", 0 0, L_02cf7318;  1 drivers
+v02cf6d98_0 .net *"_s6", 0 0, L_00ab9660;  1 drivers
+v02cf7688_0 .net *"_s8", 0 0, L_00abbf78;  1 drivers
+o02cd41f4 .functor BUFZ 1, C4<z>; HiZ drive
+v02cf72c0_0 .net "clk", 0 0, o02cd41f4;  0 drivers
+v02cf6fa8 .array "grf_reg", 31 0, 31 0;
+v02cf7580_0 .var/i "i", 31 0;
+o02cd4224 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v02cf6c90_0 .net "instr", 31 0, o02cd4224;  0 drivers
+o02cd423c .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v02cf73c8_0 .net "pc", 31 0, o02cd423c;  0 drivers
+o02cd4254 .functor BUFZ 1, C4<z>; HiZ drive
+v02cf71b8_0 .net "reset", 0 0, o02cd4254;  0 drivers
+E_02cd3448 .event posedge, v02cf72c0_0;
+L_02cf7478 .cmp/eq 5, o02cd3fcc, o02cd3ffc;
+L_02cf7318 .cmp/ne 5, o02cd3ffc, L_02cf7c18;
+L_02cf75d8 .array/port v02cf6fa8, L_02cf7000;
+L_02cf7000 .concat [ 5 2 0 0], o02cd3fcc, L_02cf7c40;
+L_02cf7210 .functor MUXZ 32, L_02cf75d8, o02cd4044, L_00abbf78, C4<>;
+L_02cf6e48 .cmp/eq 5, o02cd3fe4, o02cd3ffc;
+L_02cf7058 .cmp/ne 5, o02cd3ffc, L_02cf7c68;
+L_02cf76e0 .array/port v02cf6fa8, L_02cf7420;
+L_02cf7420 .concat [ 5 2 0 0], o02cd3fe4, L_02cf7c90;
+L_02cf6df0 .functor MUXZ 32, L_02cf76e0, o02cd4044, L_00abb290, C4<>;
+    .scope S_00abbea8;
+T_0 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v02cf7580_0, 0, 32;
+T_0.0 ;
+    %load/vec4 v02cf7580_0;
+    %cmpi/s 31, 0, 32;
+    %jmp/0xz T_0.1, 5;
+    %pushi/vec4 0, 0, 32;
+    %ix/getv/s 3, v02cf7580_0;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v02cf6fa8, 0, 4;
+    %load/vec4 v02cf7580_0;
+    %addi 1, 0, 32;
+    %store/vec4 v02cf7580_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ;
+    %end;
+    .thread T_0;
+    .scope S_00abbea8;
+T_1 ;
+    %wait E_02cd3448;
+    %load/vec4 v02cf71b8_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v02cf7580_0, 0, 32;
+T_1.2 ;
+    %load/vec4 v02cf7580_0;
+    %cmpi/s 31, 0, 32;
+    %jmp/0xz T_1.3, 5;
+    %pushi/vec4 0, 0, 32;
+    %ix/getv/s 3, v02cf7580_0;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v02cf6fa8, 0, 4;
+    %load/vec4 v02cf7580_0;
+    %addi 1, 0, 32;
+    %store/vec4 v02cf7580_0, 0, 32;
+    %jmp T_1.2;
+T_1.3 ;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v00aba628_0;
+    %load/vec4 v00aba3c0_0;
+    %pushi/vec4 0, 0, 5;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %inv;
+    %and;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.4, 8;
+    %load/vec4 v00aba5d0_0;
+    %load/vec4 v00aba3c0_0;
+    %pad/u 7;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v02cf6fa8, 0, 4;
+    %vpi_call 2 32 "$display", "%d@%h: $%d <= %h", $time, v02cf73c8_0, v00aba3c0_0, v00aba5d0_0 {0 0 0};
+T_1.4 ;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "D_GRF.v";
