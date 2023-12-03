@@ -7,10 +7,11 @@
 module D(
     input clk,
     input reset,
-    input [2:0] ForwardAD,
-    input [2:0] ForwardBD,
+    input [3:0] ForwardAD,
+    input [3:0] ForwardBD,
     input Stall,
     input [31:0] ALUOut_M,
+    input [31:0] MDUOut_M,
     input [31:0] Result_W,
     input [31:0] Instr_D,
     input [31:0] PC_D,
@@ -28,6 +29,8 @@ module D(
     output MemtoReg_D,
     output MemWrite_D,
     output [3:0] ALUCtrl_D,
+    output [3:0] MDUOp_D,
+    output MDUStart_D,
     output ALUSrc_D,
     output [1:0] RegDst_D,
     output [1:0] WriteSel_D,
@@ -68,6 +71,8 @@ module D(
     assign MemtoReg_D = MemtoReg;
     assign MemWrite_D = MemWrite;
     assign ALUCtrl_D = ALUCtrl;
+    assign MDUOp_D = MDUOp;
+    assign MDUStart_D = MDUStart;
     assign ALUSrc_D = ALUSrc;
     assign RegDst_D = RegDst;
     assign WriteSel_D = WriteSel;
@@ -80,17 +85,19 @@ module D(
     wire [31:0] left;
     wire [31:0] right;
     
-    assign left = (ForwardAD == 3'b101) ? SignImm_E : 
-                  (ForwardAD == 3'b100) ? PC_E + 8 : 
-                  (ForwardAD == 3'b011) ? ALUOut_M : 
-                  (ForwardAD == 3'b010) ? PC_M + 8: 
-                  (ForwardAD == 3'b001) ? SignImm_M : RD1;
+    assign left = (ForwardAD == 4'b0110) ? MDUOut_M :
+                  (ForwardAD == 4'b0101) ? SignImm_E : 
+                  (ForwardAD == 4'b0100) ? PC_E + 8 : 
+                  (ForwardAD == 4'b0011) ? ALUOut_M : 
+                  (ForwardAD == 4'b0010) ? PC_M + 8: 
+                  (ForwardAD == 4'b0001) ? SignImm_M : RD1;
 
-    assign right =(ForwardBD == 3'b101) ? SignImm_E : 
-                  (ForwardBD == 3'b100) ? PC_E + 8 : 
-                  (ForwardBD == 3'b011) ? ALUOut_M : 
-                  (ForwardBD == 3'b010) ? PC_M + 8: 
-                  (ForwardBD == 3'b001) ? SignImm_M : RD2;
+    assign right =(ForwardBD == 4'b0110) ? MDUOut_M :
+                  (ForwardBD == 4'b0101) ? SignImm_E : 
+                  (ForwardBD == 4'b0100) ? PC_E + 8 : 
+                  (ForwardBD == 4'b0011) ? ALUOut_M : 
+                  (ForwardBD == 4'b0010) ? PC_M + 8: 
+                  (ForwardBD == 4'b0001) ? SignImm_M : RD2;
 
 D_CMP  u_D_CMP (
     .left                    ( left           [31:0] ),
@@ -159,6 +166,8 @@ D_GRF  u_D_GRF (
     wire [1:0] WriteSel;
     wire ALUSrc;
     wire [3:0] ALUCtrl;
+    wire [3:0] MDUOp;
+    wire MDUStart;
     wire MemWrite;
     wire  MemtoReg;
 
@@ -179,6 +188,8 @@ D_CU  u_D_CU (
     .WriteSel                ( WriteSel  [1:0] ),
     .ALUSrc                  ( ALUSrc          ),
     .ALUCtrl                 ( ALUCtrl   [3:0] ),
+    .MDUOp                   ( MDUOp     [3:0] ),
+    .MDUStart                ( MDUStart        ),
     .Branch                  ( Branch          ),
     .MemWrite                ( MemWrite        ),
     .MemtoReg                ( MemtoReg        ),

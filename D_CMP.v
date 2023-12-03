@@ -16,6 +16,7 @@ module D_CMP(
     output Branch_or_not
 );
 
+    wire temp = instr[31:26] == `bne;
     assign Branch_or_not = ((instr[31:26] == `beq && Branch && left == right) || 
                             (instr[31:26] == `bne && Branch && left != right)) ? 1'b1 : 1'b0;
 

@@ -1,0 +1,48 @@
+$date
+	Sat Dec 02 14:18:58 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_E_MDU $end
+$var wire 32 ! lo [31:0] $end
+$var wire 32 " hi [31:0] $end
+$var reg 32 # left [31:0] $end
+$var reg 32 $ right [31:0] $end
+$scope module u_E_MDU $end
+$var wire 32 % left [31:0] $end
+$var wire 32 & right [31:0] $end
+$var wire 32 ' lo [31:0] $end
+$var wire 32 ( hi [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 (
+b0 '
+b0 &
+b0 %
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#100000
+b10 !
+b10 '
+b10 $
+b10 &
+b1 #
+b1 %
+#110000
+b1110000100 !
+b1110000100 '
+b11110 $
+b11110 &
+b11110 #
+b11110 %
+#120000

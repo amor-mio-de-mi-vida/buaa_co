@@ -29,7 +29,7 @@ module D_GRF(
         else begin
             if(WE && A3) begin
                 grf_reg[A3] <= WD3;
-                $display("%d@%h: $%d <= %h", $time, pc, A3, WD3);
+                // $display("%d@%h: $%d <= %h", $time, pc, A3, WD3);
             end
         end
     end

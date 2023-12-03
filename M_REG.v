@@ -11,6 +11,7 @@ module M_REG(
     input [4:0] WriteReg_E,
     input [31:0] PC_E,
     input [31:0] SignImm_E,
+    input [31:0] MDUOut_E,
     input [31:0] Instr_E,
     //data
     output reg RegWrite_M,
@@ -23,6 +24,7 @@ module M_REG(
     output reg [4:0] WriteReg_M,
     output reg [31:0] PC_M,
     output reg [31:0] SignImm_M,
+    output reg [31:0] MDUOut_M,
     output reg [31:0] Instr_M
 );
 
@@ -36,6 +38,7 @@ module M_REG(
     WriteReg_M <= 0;
     PC_M <= 0;
     SignImm_M <= 0;
+    MDUOut_M <= 0;
     Instr_M <= 0;
   end
   always @(posedge clk) begin
@@ -49,6 +52,7 @@ module M_REG(
       WriteReg_M <= 0;
       PC_M <= 0;
       SignImm_M <= 0;
+      MDUOut_M <= 0;
       Instr_M <= 0;
     end
     else begin
@@ -61,6 +65,7 @@ module M_REG(
       WriteReg_M <= WriteReg_E;
       PC_M <= PC_E;
       SignImm_M <= SignImm_E;
+      MDUOut_M <= MDUOut_E;
       Instr_M <= Instr_E;
     end
   end

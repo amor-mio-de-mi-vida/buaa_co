@@ -9,6 +9,7 @@ module W_REG(
     input [4:0] WriteReg_M,
     input [31:0] PC_M,
     input [31:0] SignImm_M,
+    input [31:0] MDUOut_M,
     input [31:0] Instr_M,
 
     output reg RegWrite_W,
@@ -18,6 +19,7 @@ module W_REG(
     output reg [31:0] ALUOut_W,
     output reg [4:0] WriteReg_W,
     output reg [31:0] SignImm_W,
+    output reg [31:0] MDUOut_W,
     output reg [31:0] PC_W,
     output  reg [31:0] Instr_W
 );
@@ -29,6 +31,7 @@ module W_REG(
         ALUOut_W <= 0;
         WriteReg_W <= 0;
         SignImm_W <= 0;
+        MDUOut_W <= 0;
         PC_W <= 0;
         Instr_W <= 0;
     end
@@ -42,6 +45,7 @@ module W_REG(
             ALUOut_W <= 0;
             WriteReg_W <= 0;
             SignImm_W <= 0;
+            MDUOut_W <= 0;
             PC_W <= 0;
             Instr_W <= 0;
         end
@@ -53,6 +57,7 @@ module W_REG(
             ALUOut_W <= ALUOut_M;
             WriteReg_W <= WriteReg_M;
             SignImm_W <= SignImm_M;
+            MDUOut_W <= MDUOut_M;
             PC_W <= PC_M;
             Instr_W <= Instr_M;
         end

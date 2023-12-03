@@ -8,6 +8,8 @@ module E_REG(
     input [3:0] ALUCtrl_D,
     input MemWrite_D,
     input MemtoReg_D,
+    input [3:0] MDUOp_D,
+    input MDUStart_D,
     //control
     input [31:0] RD1_D,
     input [31:0] RD2_D,
@@ -26,6 +28,8 @@ module E_REG(
     output reg [3:0] ALUCtrl_E,
     output reg MemWrite_E,
     output reg MemtoReg_E,
+    output reg [3:0] MDUOp_E,
+    output reg MDUStart_E,
     //control
     output reg [31:0] RD1_E,
     output reg [31:0] RD2_E,
@@ -45,6 +49,8 @@ module E_REG(
         ALUCtrl_E <= 0;
         MemWrite_E <= 0;
         MemtoReg_E <= 0;
+        MDUOp_E <= 0;
+        MDUStart_E <= 0;
         RD1_E <= 0;
         RD2_E <= 0;
         Rs_E <= 0;
@@ -63,6 +69,8 @@ module E_REG(
             ALUCtrl_E <= 0;
             MemWrite_E <= 0;
             MemtoReg_E <= 0;
+            MDUOp_E <= 0;
+            MDUStart_E <= 0;
             RD1_E <= 0;
             RD2_E <= 0;
             Rs_E <= 0;
@@ -80,6 +88,8 @@ module E_REG(
             ALUCtrl_E <= ALUCtrl_D;
             MemWrite_E <= MemWrite_D;
             MemtoReg_E <= MemtoReg_D;
+            MDUOp_E <= MDUOp_D;
+            MDUStart_E <= MDUStart_D;
             RD1_E <= RD1_D;
             RD2_E <= RD2_D;
             Rs_E <= Rs_D;
